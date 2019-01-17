@@ -1,0 +1,30 @@
+﻿@using Microsoft.Extensions.Options
+@inject IOptionsSnapshot<OptionBindSample.Class> classAccesser
+@*@model OptionBindSample.Class*@
+@{
+    Layout = null;
+    ViewData["Index"] = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <h2>Index</h2>
+    <h4>ClassNo: @classAccesser.Value.ClassNo</h4>
+    <h4>ClassName: @classAccesser.Value.ClassName</h4>
+    <h3>
+        Students :
+    </h3>
+    <div>
+        @foreach (var student in classAccesser.Value.Students)
+        {
+            <span>Name : @student.Name</span>
+            <span>Age : @student.Age</span>
+        }
+    </div>
+</head>
+<body>
+</body>
+</html>
