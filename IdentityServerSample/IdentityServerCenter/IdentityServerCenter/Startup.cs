@@ -26,6 +26,7 @@ namespace IdentityServerCenter
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //OAuth 2.0  用IdentityServer实现的客户端模式（client credentials）
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
                 .AddInMemoryApiResources(Config.GetResources())
