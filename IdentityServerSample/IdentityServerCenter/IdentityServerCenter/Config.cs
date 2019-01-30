@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.Test;
 
 namespace IdentityServerCenter
 {
@@ -20,6 +21,7 @@ namespace IdentityServerCenter
         {
             return new List<Client>
             {
+                //OAuth 2.0  用IdentityServer实现的客户端模式（client credentials）
                 new Client()
                 {
                      ClientId = "client",
@@ -28,6 +30,29 @@ namespace IdentityServerCenter
                      ClientSecrets = { new Secret("secret".Sha256()) },
 
                      AllowedScopes = {"api"}
+                },
+                //OAuth 2.0  用IdentityServer实现的密码模式（resource owner password credentials）
+                new Client()
+                {
+                     ClientId = "pwdClient",
+                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+
+                     ClientSecrets = { new Secret("secret".Sha256()) },
+
+                     AllowedScopes = {"api"}
+                }
+            };
+        }
+
+        public static List<TestUser> GetTestUsers()
+        {
+            return new List<TestUser>
+            {
+                new TestUser
+                {
+                    SubjectId = "1",
+                     Username = "test",
+                      Password = "123456"
                 }
             };
         }
