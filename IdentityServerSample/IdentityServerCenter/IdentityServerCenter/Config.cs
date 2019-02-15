@@ -51,8 +51,8 @@ namespace IdentityServerCenter
                 new TestUser
                 {
                     SubjectId = "1",
-                     Username = "test",
-                      Password = "123456"
+                    Username = "test",
+                    Password = "123456"
                 }
             };
         }

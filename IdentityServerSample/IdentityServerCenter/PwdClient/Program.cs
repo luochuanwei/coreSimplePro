@@ -38,5 +38,4 @@ namespace PwdClient
             Console.ReadLine();
         }
     }
-    }
 }
