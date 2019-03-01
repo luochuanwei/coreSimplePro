@@ -40,11 +40,27 @@ namespace JwtAuthSample
             })
             .AddJwtBearer(o =>
             {
-                o.TokenValidationParameters = new TokenValidationParameters
+                //一般Jwt授权认证方法
+                //o.TokenValidationParameters = new TokenValidationParameters
+                //{
+                //    ValidIssuer = jwtSettings.Issuer,
+                //    ValidAudience = jwtSettings.Audience,
+                //    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
+                //};
+
+                //更改获取head里jwt token方式  由Authorization改为自己命名的名称获取
+                o.SecurityTokenValidators.Clear();
+                o.SecurityTokenValidators.Add(new MyTokenValidator());
+
+                o.Events = new JwtBearerEvents()
                 {
-                    ValidIssuer = jwtSettings.Issuer,
-                    ValidAudience = jwtSettings.Audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
+                    OnMessageReceived = context =>
+                    {
+                        var token = context.Request.Headers["token"];
+                        context.Token = token.FirstOrDefault();
+
+                        return Task.CompletedTask;
+                    }
                 };
             });
 
