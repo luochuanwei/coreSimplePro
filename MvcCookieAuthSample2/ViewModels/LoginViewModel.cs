@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MvcCookieAuthSample.ViewModels
 {
-    public class RegisterViewModel
+    public class LoginViewModel
     {
         //邮箱
         [Required]
@@ -17,11 +17,6 @@ namespace MvcCookieAuthSample.ViewModels
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        //确认密码
-        [Required]
-        [DataType(DataType.Password)]
-        public string ConfirmedPassword { get; set; }
 
     }
 }

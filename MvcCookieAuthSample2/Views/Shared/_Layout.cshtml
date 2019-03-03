@@ -34,19 +34,28 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    @{
-                        if (User.Identity.IsAuthenticated)
-                        {
-                            <li>Welcome, @User.Identity.Name<a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
-                        }
-                        else
-                        {
+                @{
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        <form method="post" asp-action="Login" asp-controller="Account">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a title="Welcome" asp-action="Index" asp-controller="Admin">Welcome, @User.Identity.Name</a>
+                                </li>
+                                <li>
+                                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                                </li>
+                            </ul>
+                        </form>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-right">
                             <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
                             <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
-                        }
+                        </ul>
                     }
-                </ul>
+                }
             </div>
         </div>
     </nav>
