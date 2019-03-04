@@ -140,11 +140,12 @@ namespace MvcCookieAuthSample.Controllers
             return Ok();
         }
 
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            //HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _signInManager.SignOutAsync();
 
-            return Ok();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -37,13 +37,13 @@
                 @{
                     if (User.Identity.IsAuthenticated)
                     {
-                        <form method="post" asp-action="Login" asp-controller="Account">
+                        <form method="post" asp-action="Logout" asp-controller="Account">
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a title="Welcome" asp-action="Index" asp-controller="Admin">Welcome, @User.Identity.Name</a>
                                 </li>
                                 <li>
-                                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
                                 </li>
                             </ul>
                         </form>
